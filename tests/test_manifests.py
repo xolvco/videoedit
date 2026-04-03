@@ -1,6 +1,6 @@
 import pytest
 
-from video_editing_cli.manifests import (
+from videoedit.manifests import (
     parse_concat_playlist_manifest,
     parse_cut_list_manifest,
     parse_timeline_manifest,

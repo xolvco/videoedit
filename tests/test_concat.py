@@ -3,9 +3,9 @@ from pathlib import Path
 
 import pytest
 
-from video_editing_cli.cli import build_parser
-from video_editing_cli.operations import concat_videos
-from video_editing_cli.service import VideoEditingService
+from videoedit.cli import build_parser
+from videoedit.operations import concat_videos
+from videoedit.service import VideoEditingService
 
 
 def test_concat_parser_collects_multiple_inputs() -> None:
@@ -68,14 +68,14 @@ def test_concat_requires_two_inputs(tmp_path: Path) -> None:
 
 
 def test_concat_input_resolution_rejects_both_inputs_and_directory(tmp_path: Path) -> None:
-    from video_editing_cli.commands.concat import _resolve_input_paths
+    from videoedit.commands.concat import _resolve_input_paths
 
     with pytest.raises(ValueError):
         _resolve_input_paths(["a.mp4", "b.mp4"], str(tmp_path))
 
 
 def test_concat_source_resolution_requires_exactly_one_source_mode(tmp_path: Path) -> None:
-    from video_editing_cli.commands.concat import _resolve_concat_inputs
+    from videoedit.commands.concat import _resolve_concat_inputs
 
     with pytest.raises(ValueError):
         _resolve_concat_inputs(
@@ -93,7 +93,7 @@ def test_concat_source_resolution_requires_exactly_one_source_mode(tmp_path: Pat
 
 
 def test_concat_input_resolution_uses_sorted_directory_files(tmp_path: Path) -> None:
-    from video_editing_cli.commands.concat import _resolve_input_paths
+    from videoedit.commands.concat import _resolve_input_paths
 
     (tmp_path / "b_clip.mp4").write_text("b", encoding="utf-8")
     (tmp_path / "a_clip.mp4").write_text("a", encoding="utf-8")
@@ -105,7 +105,7 @@ def test_concat_input_resolution_uses_sorted_directory_files(tmp_path: Path) -> 
 
 
 def test_concat_json_preview_builds_manifest_style_payload() -> None:
-    from video_editing_cli.commands.concat import _build_json_preview_payload
+    from videoedit.commands.concat import _build_json_preview_payload
 
     payload = _build_json_preview_payload(
         input_paths=["clips\\b_clip.mp4", "clips\\a_clip.mp4"],
@@ -127,7 +127,7 @@ def test_concat_json_preview_builds_manifest_style_payload() -> None:
 
 
 def test_concat_json_preview_full_includes_defaults_and_explicit_fields() -> None:
-    from video_editing_cli.commands.concat import _build_json_preview_payload
+    from videoedit.commands.concat import _build_json_preview_payload
 
     payload = _build_json_preview_payload(
         input_paths=["clips\\clip.mp4"],
@@ -153,7 +153,7 @@ def test_concat_json_preview_full_includes_defaults_and_explicit_fields() -> Non
 
 
 def test_concat_playlist_resolution_uses_manifest_values(tmp_path: Path) -> None:
-    from video_editing_cli.commands.concat import _resolve_playlist_inputs
+    from videoedit.commands.concat import _resolve_playlist_inputs
 
     playlist = tmp_path / "playlist.json"
     playlist.write_text(
@@ -216,7 +216,7 @@ def test_concat_playlist_resolution_uses_manifest_values(tmp_path: Path) -> None
 
 
 def test_concat_playlist_resolution_allows_per_item_start_values(tmp_path: Path) -> None:
-    from video_editing_cli.commands.concat import _resolve_playlist_inputs
+    from videoedit.commands.concat import _resolve_playlist_inputs
 
     playlist = tmp_path / "playlist.json"
     playlist.write_text(
@@ -239,8 +239,8 @@ def test_concat_playlist_resolution_allows_per_item_start_values(tmp_path: Path)
 
 
 def test_concat_playlist_mode_builds_filtered_ffmpeg_graph_with_per_item_values(tmp_path: Path, monkeypatch) -> None:
-    from video_editing_cli.commands.concat import _resolve_playlist_inputs
-    from video_editing_cli.operations import concat_playlist
+    from videoedit.commands.concat import _resolve_playlist_inputs
+    from videoedit.operations import concat_playlist
 
     clip_a = tmp_path / "clip_one.mp4"
     clip_b = tmp_path / "clip_two.mp4"
@@ -300,7 +300,7 @@ def test_concat_playlist_mode_builds_filtered_ffmpeg_graph_with_per_item_values(
         return None
 
     monkeypatch.setattr(VideoEditingService, "probe_media", fake_probe_media)
-    monkeypatch.setattr("video_editing_cli.service.run_ffmpeg", fake_run_ffmpeg)
+    monkeypatch.setattr("videoedit.service.run_ffmpeg", fake_run_ffmpeg)
 
     resolved = _resolve_playlist_inputs(playlist, "fallback.mp4")
     concat_playlist(
@@ -345,7 +345,7 @@ def test_concat_advanced_mode_builds_filtered_ffmpeg_graph(tmp_path: Path, monke
         return None
 
     monkeypatch.setattr(VideoEditingService, "probe_media", fake_probe_media)
-    monkeypatch.setattr("video_editing_cli.service.run_ffmpeg", fake_run_ffmpeg)
+    monkeypatch.setattr("videoedit.service.run_ffmpeg", fake_run_ffmpeg)
 
     concat_videos(
         [clip_a, clip_b],
