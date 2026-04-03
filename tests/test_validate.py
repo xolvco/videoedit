@@ -3,9 +3,9 @@ from pathlib import Path
 
 import pytest
 
-from video_editing_cli.cli import build_parser
-from video_editing_cli.commands import validate
-from video_editing_cli.service import VideoEditingService
+from videoedit.cli import build_parser
+from videoedit.commands import validate
+from videoedit.service import VideoEditingService
 
 
 def test_validate_parser_accepts_manifest_path() -> None:
@@ -129,3 +129,4 @@ def test_validate_command_returns_1_for_invalid_manifest(capsys, tmp_path: Path)
     assert exit_code == 1
     assert "Invalid manifest:" in captured.err
     assert "missing.mp4" in captured.err
+

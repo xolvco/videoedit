@@ -170,3 +170,4 @@ def test_parse_concat_playlist_manifest_rejects_unknown_title_style() -> None:
                 ],
             }
         )
+

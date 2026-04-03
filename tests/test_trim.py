@@ -1,4 +1,4 @@
-from video_editing_cli.cli import build_parser
+from videoedit.cli import build_parser
 
 
 def test_trim_parser_accepts_expected_arguments() -> None:
@@ -22,3 +22,4 @@ def test_trim_parser_accepts_expected_arguments() -> None:
     assert args.start == "00:00:05"
     assert args.duration == "10"
     assert args.reencode is True
+

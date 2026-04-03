@@ -3,15 +3,15 @@ from pathlib import Path
 
 import pytest
 
-from video_editing_cli.assembly import (
+from videoedit.assembly import (
     build_filter_complex,
     build_metadata_text,
     parse_timecode,
     resolve_section_duration,
 )
-from video_editing_cli.assembly import TimelineSection
-from video_editing_cli.cli import build_parser
-from video_editing_cli.service import VideoEditingService
+from videoedit.assembly import TimelineSection
+from videoedit.cli import build_parser
+from videoedit.service import VideoEditingService
 
 
 def test_assemble_parser_accepts_manifest_options() -> None:
@@ -151,3 +151,4 @@ def test_build_assembly_manifest_uses_titles_and_overrides(tmp_path, monkeypatch
     assert manifest.sections[1].gap_after_seconds == 2.0
     assert manifest.sections[1].audio_fade_in_seconds == 0.5
     assert manifest.sections[1].audio_fade_out_seconds == 0.5
+

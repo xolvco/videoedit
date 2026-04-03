@@ -1,8 +1,8 @@
 import json
 from pathlib import Path
 
-from video_editing_cli.cli import build_parser
-from video_editing_cli.commands import probe
+from videoedit.cli import build_parser
+from videoedit.commands import probe
 
 
 def test_probe_parser_accepts_input() -> None:
@@ -23,3 +23,4 @@ def test_probe_handler_prints_json(monkeypatch, capsys) -> None:
 
     assert exit_code == 0
     assert json.loads(capsys.readouterr().out) == {"input": "input.mp4", "streams": []}
+

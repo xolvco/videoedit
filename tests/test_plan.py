@@ -1,8 +1,8 @@
 import json
 from pathlib import Path
 
-from video_editing_cli.cli import build_parser
-from video_editing_cli.service import VideoEditingService
+from videoedit.cli import build_parser
+from videoedit.service import VideoEditingService
 
 
 def test_plan_parser_accepts_manifest_options() -> None:
@@ -68,3 +68,4 @@ def test_summarize_assembly_plan_returns_resolved_json_shape(tmp_path, monkeypat
     assert summary.sections[0].audio_fade_out_seconds == 0.5
     assert summary.output_path == (tmp_path / "output.mp4").resolve()
     assert "libx264" in summary.ffmpeg_args
+

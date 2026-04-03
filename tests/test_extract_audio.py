@@ -1,4 +1,4 @@
-from video_editing_cli.cli import build_parser
+from videoedit.cli import build_parser
 
 
 def test_extract_audio_parser_accepts_codec() -> None:
@@ -9,3 +9,4 @@ def test_extract_audio_parser_accepts_codec() -> None:
     assert args.input == "input.mp4"
     assert args.output == "audio.wav"
     assert args.codec == "mp3"
+

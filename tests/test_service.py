@@ -1,4 +1,4 @@
-from video_editing_cli.service import FFmpegTools, VideoEditingService
+from videoedit.service import FFmpegTools, VideoEditingService
 
 
 def test_service_uses_provided_tool_paths() -> None:
@@ -6,3 +6,4 @@ def test_service_uses_provided_tool_paths() -> None:
 
     assert service.tools.ffmpeg == "custom-ffmpeg"
     assert service.tools.ffprobe == "custom-ffprobe"
+

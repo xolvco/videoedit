@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from video_editing_cli.commands import COMMAND_MODULES
+from videoedit.commands import COMMAND_MODULES
 
 
 def test_every_command_has_docs_and_tests() -> None:
@@ -21,3 +21,4 @@ def test_every_command_has_docs_and_tests() -> None:
 
     assert not missing_docs, f"Missing command docs: {missing_docs}"
     assert not missing_tests, f"Missing command tests: {missing_tests}"
+

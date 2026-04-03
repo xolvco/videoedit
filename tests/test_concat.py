@@ -366,3 +366,4 @@ def test_concat_advanced_mode_builds_filtered_ffmpeg_graph(tmp_path: Path, monke
     assert "afade=t=in:st=0:d=0.500" in command_text
     assert "use_metadata_tags" in command
     assert "libx264" in command
+

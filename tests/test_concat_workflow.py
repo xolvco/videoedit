@@ -1,10 +1,10 @@
 import json
 from pathlib import Path
 
-from video_editing_cli.cli import main
-from video_editing_cli.commands.concat import _build_json_preview_payload
-from video_editing_cli.assembly import build_metadata_text
-from video_editing_cli.service import VideoEditingService
+from videoedit.cli import main
+from videoedit.commands.concat import _build_json_preview_payload
+from videoedit.assembly import build_metadata_text
+from videoedit.service import VideoEditingService
 
 
 def test_concat_workflow_preview_to_playlist_render(tmp_path: Path, monkeypatch, capsys) -> None:
@@ -46,8 +46,8 @@ def test_concat_workflow_preview_to_playlist_render(tmp_path: Path, monkeypatch,
         return metadata_path
 
     monkeypatch.setattr(VideoEditingService, "probe_media", fake_probe_media)
-    monkeypatch.setattr("video_editing_cli.service.run_ffmpeg", fake_run_ffmpeg)
-    monkeypatch.setattr("video_editing_cli.service.write_metadata_file", fake_write_metadata_file)
+    monkeypatch.setattr("videoedit.service.run_ffmpeg", fake_run_ffmpeg)
+    monkeypatch.setattr("videoedit.service.write_metadata_file", fake_write_metadata_file)
 
     validate_exit = main(["validate", str(playlist_path)])
     concat_exit = main(["concat", str(tmp_path / "out.mp4"), "--playlist", str(playlist_path)])
@@ -60,3 +60,4 @@ def test_concat_workflow_preview_to_playlist_render(tmp_path: Path, monkeypatch,
     assert "trim=start=1.000:duration=11.000" in command_text
     assert "trim=start=1.000:duration=3.000" in command_text
     assert "title=Opening" in metadata_text["value"]
+
