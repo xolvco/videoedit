@@ -1,9 +1,19 @@
 site_name: videoedit
 site_description: FFmpeg-backed video editing library and CLI docs
+site_url: https://xolvco.github.io/videoedit/
 repo_url: https://github.com/xolvco/videoedit
 repo_name: xolvco/videoedit
 theme:
   name: material
+markdown_extensions:
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_div_format
+extra_javascript:
+  - https://unpkg.com/mermaid@11/dist/mermaid.min.js
+  - javascripts/mermaid-init.js
 nav:
   - Home: index.md
   - Getting Started:

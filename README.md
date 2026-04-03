@@ -1,15 +1,24 @@
 # videoedit
 
-`videoedit` is a production-oriented Python package for building fast-beating music video workflows on top of FFmpeg. It is designed to work as both:
+`videoedit` is a reusable Python library and CLI for FFmpeg-backed editing workflows. It is designed to work as both:
 
 - a command line tool for scripts and automation
 - a Python library that other applications can import and use directly
+
+Live docs: https://xolvco.github.io/videoedit/
+
+## Start here
+
+- Read the docs site for the best onboarding flow: https://xolvco.github.io/videoedit/
+- Use [`docs/QUICKSTART.md`](docs/QUICKSTART.md) for the fastest first run
+- Use [`docs/USAGE.md`](docs/USAGE.md) for the broader CLI and library surface
+- Use [`docs/CONCAT_PLAYLIST_GUIDE.md`](docs/CONCAT_PLAYLIST_GUIDE.md) for playlist manifests, titles, fades, and spacers
 
 ## Value-add goal
 
 The project is meant to add value on top of FFmpeg, not compete with it. Its main purpose is to make it easier to create energetic, section-driven music videos from reusable cut plans and timeline manifests.
 
-This package is intended to become a reusable backend engine for a future editing UI. The UI will be the public face for selecting footage, deciding what to cut, and choosing how clips should be reassembled. This library should carry the hard production logic underneath that interface.
+This package is intended to be a reusable backend engine for a future editing UI. The UI will be the public face for selecting footage, deciding what to cut, and choosing how clips should be reassembled. This library carries the hard production logic underneath that interface.
 
 The reusable layer should focus on:
 
@@ -54,6 +63,17 @@ See `docs/CONTRIBUTING_COMMANDS.md` for the command checklist.
 - `examples/powershell/`: example PowerShell scripts
 - `examples/bash/`: example bash scripts for Git Bash and WSL2
 
+## Current backend surface
+
+The current backend supports:
+
+- probing media with `ffprobe`
+- trimming clips with optional stream copying
+- validating and planning versioned manifests
+- rendering playlist, timeline, and canvas manifests
+- normalizing mixed-source footage before later assembly
+- extracting audio tracks for downstream workflows
+
 ## Planned direction
 
 This scaffold focuses on a stable foundation for a reusable editing CLI. The initial command set supports the building blocks for music video pipelines:
@@ -66,7 +86,7 @@ This scaffold focuses on a stable foundation for a reusable editing CLI. The ini
 - `extract-audio`: export an audio track from a video file
 - `assemble`: build a stitched timeline from a manifest with gaps, audio fades, and chapter markers
 
-The long-term direction is to support workflows like:
+The long-term direction is to keep broadening workflows like:
 
 - cutting source footage into beat-sized moments
 - rearranging those moments with human-readable JSON manifests
@@ -149,12 +169,13 @@ You can also run the CLI in a shell-neutral way:
 python -m videoedit probe input.mp4
 ```
 
-For a broader usage guide, see `docs/USAGE.md`.
-For a step-by-step first run, see `docs/QUICKSTART.md`.
-For the current concat playlist workflow, see `docs/CONCAT_PLAYLIST_GUIDE.md`.
-For manifest formats, see `docs/MANIFESTS.md`.
-For the current design direction, see `docs/ARCHITECTURE_SESSION.md` and `BACKLOG.md`.
-For the testing strategy, see `docs/TEST_PLAN.md`.
+For the published docs site, see https://xolvco.github.io/videoedit/
+For a broader usage guide, see [`docs/USAGE.md`](docs/USAGE.md).
+For a step-by-step first run, see [`docs/QUICKSTART.md`](docs/QUICKSTART.md).
+For the current concat playlist workflow, see [`docs/CONCAT_PLAYLIST_GUIDE.md`](docs/CONCAT_PLAYLIST_GUIDE.md).
+For manifest formats, see [`docs/MANIFESTS.md`](docs/MANIFESTS.md).
+For the current design direction, see [`docs/ARCHITECTURE_SESSION.md`](docs/ARCHITECTURE_SESSION.md) and `BACKLOG.md`.
+For the testing strategy, see [`docs/TEST_PLAN.md`](docs/TEST_PLAN.md).
 
 ## Compatibility wrappers
 
