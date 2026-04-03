@@ -29,3 +29,4 @@ video-edit trim input.mp4 output.mp4 --start 00:00:03 --end 00:00:15 --reencode
 
 - Use either `--end` or `--duration` for the clearest results
 - Stream copy is the default when compatible
+

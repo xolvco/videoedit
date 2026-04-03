@@ -1,6 +1,6 @@
 # Vision
 
-`video-editing-cli` exists to help create fast-beating music videos and other highly structured video assemblies that are hard to build quickly in traditional editors.
+`videoedit` exists to help create fast-beating music videos and other highly structured video assemblies that are hard to build quickly in traditional editors.
 
 ## Core outcome
 
@@ -54,3 +54,4 @@ The library should prioritize:
 - split-screen and multi-panel composition
 - preview and final render modes
 - source clip libraries and shot selection manifests
+

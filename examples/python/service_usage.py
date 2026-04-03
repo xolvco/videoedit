@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from video_editing_cli import FFmpegTools, VideoEditingService
+from videoedit import FFmpegTools, VideoEditingService
 
 
 def main() -> None:
@@ -18,3 +18,4 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+

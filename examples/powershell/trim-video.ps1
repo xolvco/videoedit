@@ -9,3 +9,4 @@ param(
 $ErrorActionPreference = "Stop"
 
 video-edit trim $InputPath $OutputPath --start 00:00:05 --duration 15
+

@@ -1,7 +1,7 @@
 import json
 from pathlib import Path
 
-from video_editing_cli.operations import probe_media
+from videoedit.operations import probe_media
 
 
 def main() -> None:
@@ -11,3 +11,4 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+

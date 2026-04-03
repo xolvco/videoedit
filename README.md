@@ -1,6 +1,6 @@
-# video-editing-cli
+# videoedit
 
-`video-editing-cli` is a production-oriented Python package for building fast-beating music video workflows on top of FFmpeg. It is designed to work as both:
+`videoedit` is a production-oriented Python package for building fast-beating music video workflows on top of FFmpeg. It is designed to work as both:
 
 - a command line tool for scripts and automation
 - a Python library that other applications can import and use directly
@@ -31,7 +31,7 @@ Every CLI command in this project should include all three of these in the same 
 
 The command layout is intentionally organized around that rule:
 
-- CLI modules live in `src/video_editing_cli/commands/`
+- CLI modules live in `src/videoedit/commands/`
 - command docs live in `docs/commands/`
 - command tests live in `tests/test_<command>.py`
 
@@ -39,8 +39,8 @@ See `docs/CONTRIBUTING_COMMANDS.md` for the command checklist.
 
 ## Project layout
 
-- `src/video_editing_cli/`: package code
-- `src/video_editing_cli/commands/`: one module per CLI command
+- `src/videoedit/`: package code
+- `src/videoedit/commands/`: one module per CLI command
 - `tests/`: automated tests
 - `BACKLOG.md`: prioritized work list
 - `docs/commands/`: command reference pages
@@ -127,7 +127,7 @@ The `concat` workflow now also supports manifest-style preview scaffolding and c
 You can also run the CLI in a shell-neutral way:
 
 ```bash
-python -m video_editing_cli probe input.mp4
+python -m videoedit probe input.mp4
 ```
 
 For a broader usage guide, see `docs/USAGE.md`.
@@ -142,7 +142,7 @@ For the testing strategy, see `docs/TEST_PLAN.md`.
 ```python
 from pathlib import Path
 
-from video_editing_cli import VideoEditingService
+from videoedit import VideoEditingService
 
 service = VideoEditingService()
 service.trim_video(
@@ -181,3 +181,4 @@ This project shells out to FFmpeg rather than re-implementing codec logic in Pyt
 ## License
 
 MIT. See [LICENSE](LICENSE).
+

@@ -1,6 +1,6 @@
 # Architecture
 
-`video-editing-cli` is designed as a reusable library with a CLI on top, aimed at fast-beating music video assembly workflows.
+`videoedit` is designed as a reusable library with a CLI on top, aimed at fast-beating music video assembly workflows.
 
 ## Stack
 
@@ -78,3 +78,4 @@ In v1, this should include:
 - an optional intro card with a black default background or a supplied branding video, plus simple program-title text
 - optional paged credits on a color, image, or video background
 - a separate copyright closing frame with small anchored text
+

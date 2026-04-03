@@ -89,3 +89,4 @@ See [Manifest Formats](../MANIFESTS.md) for the full schema.
 - The command currently assumes each input has both video and audio streams
 - Because it uses filters for padding and fades, the output is re-encoded
 - A common workflow is `validate` -> `plan` -> `assemble`
+

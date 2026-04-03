@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from video_editing_cli.operations import trim_video
+from videoedit.operations import trim_video
 
 
 def main() -> None:
@@ -15,3 +15,4 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+

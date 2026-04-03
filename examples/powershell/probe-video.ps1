@@ -10,3 +10,4 @@ $media = $json | ConvertFrom-Json
 
 Write-Host "Container:" $media.format.format_name
 Write-Host "Duration:" $media.format.duration
+

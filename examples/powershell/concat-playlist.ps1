@@ -3,5 +3,6 @@ param(
     [string]$OutputPath = "playlist-output.mp4"
 )
 
-python -m video_editing_cli validate $PlaylistPath
-python -m video_editing_cli concat $OutputPath --playlist $PlaylistPath
+python -m videoedit validate $PlaylistPath
+python -m videoedit concat $OutputPath --playlist $PlaylistPath
+

@@ -1,6 +1,6 @@
-# video-editing-cli
+# videoedit
 
-`video-editing-cli` is a reusable Python library and CLI for FFmpeg-backed editing workflows.
+`videoedit` is a reusable Python library and CLI for FFmpeg-backed editing workflows.
 
 It is aimed at practical workflows such as:
 
@@ -28,3 +28,4 @@ It is aimed at practical workflows such as:
 - [Manifest formats](MANIFESTS.md)
 - [Architecture session](ARCHITECTURE_SESSION.md)
 - [Test plan](TEST_PLAN.md)
+

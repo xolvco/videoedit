@@ -1,6 +1,6 @@
 # Quickstart
 
-This guide walks through the fastest path to a usable result with `video-editing-cli`.
+This guide walks through the fastest path to a usable result with `videoedit`.
 
 It assumes:
 
@@ -45,7 +45,7 @@ After installation, you can usually run either form:
 
 ```powershell
 video-edit probe .\input.mp4
-python -m video_editing_cli probe .\input.mp4
+python -m videoedit probe .\input.mp4
 ```
 
 For day-to-day use in this repo, `video-edit ...` is the most convenient.
@@ -152,3 +152,4 @@ Today the supported spacer behavior is black spacing controlled by `spacer_secon
 ## Next step
 
 Once you are comfortable with the quickstart flow, continue to [Concat Playlist Guide](CONCAT_PLAYLIST_GUIDE.md) for a manifest-focused guide that explains the current playlist format in more detail.
+

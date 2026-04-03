@@ -1,6 +1,6 @@
 # Architecture Session
 
-This document captures the current architecture direction for `video-editing-cli` after the initial scaffold phase.
+This document captures the current architecture direction for `videoedit` after the initial scaffold phase.
 
 ## Problem statement
 
@@ -19,7 +19,7 @@ The main pain points it should solve are:
 
 ## Product thesis
 
-FFmpeg is the engine. `video-editing-cli` should be the orchestration layer that turns music-video editorial intent into validated, reusable render plans.
+FFmpeg is the engine. `videoedit` should be the orchestration layer that turns music-video editorial intent into validated, reusable render plans.
 
 It should also be designed as a production backend for a future UI. The UI should decide what the editor wants to do. This library should perform the hard work reliably and repeatably.
 
@@ -968,3 +968,4 @@ The next architecture milestone should be:
 2. Add `plan` and `validate` commands.
 3. Split inline assembly logic into explicit planning objects.
 4. Add one workflow example that starts from source clips and ends with a rendered music-video timeline.
+

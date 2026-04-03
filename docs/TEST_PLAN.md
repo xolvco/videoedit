@@ -1,6 +1,6 @@
 # Test Plan
 
-This document defines the testing strategy for `video-editing-cli`.
+This document defines the testing strategy for `videoedit`.
 
 ## Why we need this
 
@@ -253,3 +253,4 @@ Right now the project is still missing:
 3. Add a `plan` command and test its output.
 4. Add the first FFmpeg integration test using tiny generated media.
 5. Add one golden workflow test for a miniature music-video pipeline.
+

@@ -1,6 +1,6 @@
 # Manifests
 
-`video-editing-cli` uses versioned JSON manifests as its main data interface.
+`videoedit` uses versioned JSON manifests as its main data interface.
 
 ## Why manifests
 
@@ -13,7 +13,7 @@ They are:
 
 ## Manifest types
 
-Version `1` currently defines two manifest shapes:
+Version `1` currently defines three manifest shapes:
 
 - cut list manifests
 - timeline manifests
@@ -150,3 +150,4 @@ Concat playlist notes:
 - `title_styles` may define reusable concat title styles
 - items may define `title`, `title_start`, `title_duration`, and `title_style`
 - `title_style` must reference a style defined in `title_styles`
+

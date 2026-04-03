@@ -29,7 +29,7 @@ video-edit <command> [arguments] [options]
 Portable alternative:
 
 ```bash
-python -m video_editing_cli <command> [arguments] [options]
+python -m videoedit <command> [arguments] [options]
 ```
 
 ## Included commands
@@ -139,3 +139,4 @@ Detailed command pages live in the command reference section below.
 - [Concat](commands/concat.md)
 - [Extract Audio](commands/extract_audio.md)
 - [Assemble](commands/assemble.md)
+

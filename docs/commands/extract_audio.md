@@ -25,3 +25,4 @@ video-edit extract-audio input.mp4 audio.wav --codec pcm_s16le
 
 - The command removes video streams from the output
 - Use `--codec` when you want a specific output format or encoder
+

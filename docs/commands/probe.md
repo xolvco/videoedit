@@ -21,3 +21,4 @@ video-edit probe input.mp4
 - Returns machine-readable JSON to standard output
 - Useful for validating streams, codecs, duration, and container metadata
 - Often useful before building trims, concat playlists, or timeline manifests
+

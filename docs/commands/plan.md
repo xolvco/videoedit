@@ -48,3 +48,4 @@ Example fields include:
 - referenced source files must exist so the plan can be resolved
 - Use `plan` after `validate` when you want to inspect the resolved output before rendering
 - See [Manifest Formats](../MANIFESTS.md) for the timeline manifest structure
+

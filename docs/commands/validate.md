@@ -41,3 +41,4 @@ If validation fails, the command exits with a non-zero status and prints the err
 - Validation does not probe media duration
 - Use this command before `plan`, `assemble`, or `concat --playlist`
 - See [Manifest Formats](../MANIFESTS.md) for the supported manifest shapes
+

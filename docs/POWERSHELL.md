@@ -16,14 +16,14 @@ video-edit trim .\input.mp4 .\clip.mp4 --start 00:00:10 --duration 20
 If you are working from the repo before installing the command globally:
 
 ```powershell
-python -m video_editing_cli.cli probe .\input.mp4
+python -m videoedit probe .\input.mp4
 ```
 
 If needed, set `PYTHONPATH` to include `src` first:
 
 ```powershell
 $env:PYTHONPATH = "$PWD\src"
-python -m video_editing_cli.cli probe .\input.mp4
+python -m videoedit probe .\input.mp4
 ```
 
 ## Capture JSON output
@@ -54,3 +54,4 @@ video-edit trim .\input.mp4 .\clip.mp4 --start 00:00:10 --duration 20
 ## Example scripts
 
 See `examples/powershell/` for runnable starter scripts.
+
