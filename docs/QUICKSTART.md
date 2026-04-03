@@ -101,6 +101,33 @@ Once the playlist looks right:
 video-edit concat .\output.mp4 --playlist .\playlist.json
 ```
 
+## 8. Use the library API directly
+
+If you are integrating `videoedit` into another Python app, the service and manifest helpers are the canonical API:
+
+```python
+from pathlib import Path
+
+from videoedit import VideoEditingService, load_manifest, plan_render, summarize_plan
+
+service = VideoEditingService()
+manifest = load_manifest(Path("playlist.json"))
+plan = plan_render(Path("playlist.json"))
+summary = summarize_plan(Path("playlist.json"))
+```
+
+Use the higher-level render helpers when you already have a manifest on disk:
+
+```python
+from pathlib import Path
+
+from videoedit import render_canvas, render_playlist, render_timeline
+
+render_playlist(Path("playlist.json"))
+render_timeline(Path("timeline.json"))
+render_canvas(Path("canvas.json"))
+```
+
 ## Common questions
 
 ### How do I set the gap between videos to `0`?

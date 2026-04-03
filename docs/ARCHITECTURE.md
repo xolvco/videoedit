@@ -32,6 +32,7 @@ Use `videoedit` as the primary library for:
 
 - manifest-driven editing workflows
 - `VideoEditingService`
+- direct library helpers such as `load_manifest`, `plan_render`, and `summarize_plan`
 - timeline planning and rendering
 - playlist/concat rendering
 - canvas rendering
@@ -52,6 +53,19 @@ Compatibility layers:
 - `media-tools` re-exports low-level helpers from `videoedit`
 - `video_editing_cli` re-exports the old service and CLI surface from `videoedit`
 - `videoflow` re-exports reel/canvas/audio-mix classes from `videoedit`, while still owning analysis/generation modules
+
+## Testing model
+
+Testing now follows the same ownership split:
+
+- `videoedit` is the only repo that should carry the full behavioral confidence burden
+- compatibility repos should prove imports, entrypoints, and basic dispatch only
+- we should avoid rebuilding the same deep suites in wrappers once behavior has moved into `videoedit`
+
+That means the current migration is intentionally asymmetric:
+
+- `videoedit` should grow toward integration and golden-workflow coverage
+- wrapper repos should stay small and cheap to keep green
 
 ## Why this adds value
 

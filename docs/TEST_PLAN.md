@@ -242,9 +242,20 @@ Right now the project is still missing:
 
 - a dedicated fixture strategy for media files
 - FFmpeg-backed integration tests
-- a `plan` command to test without rendering
-- explicit validation command coverage
-- workflow/golden tests
+- broader playlist and canvas render-path tests
+- workflow/golden tests for the unified library-first backend
+- a clear split between canonical `videoedit` tests and compatibility-wrapper smoke tests in the written plan
+
+## Current reality after the refactor
+
+The refactor changed test ownership:
+
+- `videoedit` is the source of truth and now owns the meaningful behavioral tests
+- `media-tools` runs smoke tests that verify wrapper exports and basic CLI wiring
+- `video_editing_cli` runs smoke tests that verify command/docs coverage, manifest compatibility, and service import wiring
+- `videoflow` still needs a clearer long-term testing split because only part of its surface moved into `videoedit`
+
+So the current suite is good enough for a migration checkpoint, but it is not yet the full end-state test architecture described above. The main thing still missing is deeper integration coverage in `videoedit`, not more full legacy-suite duplication in the wrapper repos.
 
 ## Recommended next testing milestone
 

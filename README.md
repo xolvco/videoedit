@@ -123,6 +123,25 @@ video-edit assemble examples/manifests/timeline.v1.json output.mp4
 
 The `assemble` workflow uses versioned, human-readable JSON manifests so you can describe cuts and reassembly with explicit timecodes.
 The `concat` workflow now also supports manifest-style preview scaffolding and concat playlist manifests for quick playlist authoring.
+The library surface also includes higher-level manifest helpers for application code:
+
+```python
+from pathlib import Path
+
+from videoedit import (
+    VideoEditingService,
+    load_manifest,
+    plan_render,
+    render_canvas,
+    render_playlist,
+    render_timeline,
+    summarize_plan,
+)
+
+manifest = load_manifest(Path("examples/manifests/concat-playlist.v1.json"))
+plan = plan_render(Path("examples/manifests/concat-playlist.v1.json"))
+summary = summarize_plan(Path("examples/manifests/concat-playlist.v1.json"))
+```
 
 You can also run the CLI in a shell-neutral way:
 
@@ -173,6 +192,16 @@ Run tests with:
 ```
 
 Each registered command is also checked for matching docs and tests, so missing one of the three pieces will fail the suite.
+
+## Testing ownership
+
+`videoedit` is now the canonical implementation and the primary place for behavioral testing.
+
+- `videoedit` owns manifest, service, command, and workflow behavior tests
+- `media-tools` and `video_editing_cli` now run compatibility smoke tests rather than the old full suites
+- `videoflow` compatibility coverage is still partial because analysis/generation features have not fully moved into `videoedit`
+
+This means the current test posture is strong for the migrated core, but it is not yet the fully built-out-from-scratch target described in `docs/TEST_PLAN.md`. The biggest remaining gaps are FFmpeg-backed integration fixtures, golden workflow coverage, and broader render-path tests for canvas and playlist rendering.
 
 ## Notes
 
