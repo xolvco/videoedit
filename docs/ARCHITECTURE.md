@@ -8,6 +8,51 @@
 2. `VideoEditingService` provides a stable Python API for applications.
 3. CLI command modules translate terminal arguments into service calls.
 
+## Dependency Graph
+
+```mermaid
+flowchart TD
+    FF[ffmpeg / ffprobe]
+    VE[videoedit]
+    MT[media-tools]
+    VF[videoflow]
+    VEC[video_editing_cli]
+
+    FF --> VE
+    MT --> VE
+    VF --> VE
+    VEC --> VE
+```
+
+`videoedit` is now the canonical implementation layer. The legacy repos are compatibility wrappers that forward to it.
+
+## Current Feature Ownership
+
+Use `videoedit` as the primary library for:
+
+- manifest-driven editing workflows
+- `VideoEditingService`
+- timeline planning and rendering
+- playlist/concat rendering
+- canvas rendering
+- low-level media helpers migrated from `media-tools`
+  probe, trim, concat, normalize, extract audio, thumbnails, conversion, and download helpers
+
+Use `videoflow` only for the features that have not been fully absorbed into `videoedit` yet:
+
+- beat analysis
+  `videoflow.audio.analyze_beats`
+- scene detection
+  `videoflow.analysis.detect_scenes`
+- funscript generation
+  `videoflow.generate.generate_from_beats`
+
+Compatibility layers:
+
+- `media-tools` re-exports low-level helpers from `videoedit`
+- `video_editing_cli` re-exports the old service and CLI surface from `videoedit`
+- `videoflow` re-exports reel/canvas/audio-mix classes from `videoedit`, while still owning analysis/generation modules
+
 ## Why this adds value
 
 The value of this project should come from the layer above FFmpeg:
