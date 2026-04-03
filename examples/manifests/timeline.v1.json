@@ -1,0 +1,56 @@
+{
+  "version": 1,
+  "sources": [
+    {
+      "id": "session",
+      "path": "session.mp4"
+    },
+    {
+      "id": "closing",
+      "path": "closing.mp4"
+    }
+  ],
+  "cuts": [
+    {
+      "id": "intro-look",
+      "source": "session",
+      "start": "00:00:05.000",
+      "end": "00:00:06.200",
+      "label": "Intro glance"
+    },
+    {
+      "id": "main-hit",
+      "source": "session",
+      "start": "00:03:10",
+      "duration": "00:00:18.000",
+      "label": "Main segment"
+    },
+    {
+      "id": "closing-shot",
+      "source": "closing",
+      "label": "Closing"
+    }
+  ],
+  "defaults": {
+    "gap_after_seconds": 2.0,
+    "audio_fade_in_seconds": 0.5,
+    "audio_fade_out_seconds": 0.5
+  },
+  "sections": [
+    {
+      "cut": "intro-look",
+      "title": "Intro"
+    },
+    {
+      "cut": "main-hit",
+      "title": "Main Segment"
+    },
+    {
+      "cut": "closing-shot",
+      "title": "Closing"
+    }
+  ],
+  "output": {
+    "path": "output.mp4"
+  }
+}

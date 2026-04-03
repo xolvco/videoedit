@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "sources": [
+    {
+      "id": "session",
+      "path": "session.mp4"
+    }
+  ],
+  "cuts": [
+    {
+      "id": "intro-look",
+      "source": "session",
+      "start": "00:00:05.000",
+      "end": "00:00:06.200",
+      "label": "Intro glance",
+      "tags": ["closeup", "beat"]
+    },
+    {
+      "id": "main-hit",
+      "source": "session",
+      "start": "00:03:10",
+      "duration": "00:00:18.000",
+      "label": "Main segment"
+    }
+  ]
+}

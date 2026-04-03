@@ -1,0 +1,31 @@
+site_name: video-editing-cli
+site_description: FFmpeg-backed video editing CLI and library docs
+repo_url: https://github.com/xolvco/video-editing-cli
+repo_name: xolvco/video-editing-cli
+theme:
+  name: material
+nav:
+  - Home: index.md
+  - Getting Started:
+      - Quickstart: QUICKSTART.md
+      - Concat Playlist Guide: CONCAT_PLAYLIST_GUIDE.md
+      - CLI Usage: USAGE.md
+      - PowerShell: POWERSHELL.md
+      - Bash: BASH.md
+  - Commands:
+      - Probe: commands/probe.md
+      - Validate: commands/validate.md
+      - Plan: commands/plan.md
+      - Trim: commands/trim.md
+      - Concat: commands/concat.md
+      - Extract Audio: commands/extract_audio.md
+      - Assemble: commands/assemble.md
+  - Reference:
+      - Manifests: MANIFESTS.md
+      - Vision: VISION.md
+      - Architecture: ARCHITECTURE.md
+      - Architecture Session: ARCHITECTURE_SESSION.md
+      - Test Plan: TEST_PLAN.md
+      - Contributing Commands: CONTRIBUTING_COMMANDS.md
+plugins:
+  - search
