@@ -81,6 +81,82 @@ def test_render_timeline_renders_real_output_from_generated_media(
     assert float(probe_result["format"]["duration"]) >= 1.0
 
 
+def test_render_playlist_renders_real_output_from_generated_media(
+    generated_media_workspace,
+) -> None:
+    generated_media_workspace.create_video(
+        "clip-a.mp4",
+        duration_seconds=0.8,
+        size=(160, 90),
+        color="red",
+        tone_hz=440,
+    )
+    generated_media_workspace.create_video(
+        "clip-b.mp4",
+        duration_seconds=0.7,
+        size=(160, 90),
+        color="yellow",
+        tone_hz=620,
+    )
+    manifest_path = generated_media_workspace.write_manifest(
+        "playlist.integration.v1.json",
+        {
+            "kind": "playlist",
+            "version": 1,
+            "defaults": {
+                "spacer_seconds": 0.1,
+                "audio_fade_in_seconds": 0.05,
+                "audio_fade_out_seconds": 0.05,
+            },
+            "title_styles": {
+                "default": {
+                    "anchor": "bottom-left",
+                    "offset_x": 20,
+                    "offset_y": 20,
+                    "font_size": 18,
+                    "font_color": "#FFFFFF",
+                    "opacity": 0.85,
+                }
+            },
+            "items": [
+                {
+                    "path": "../media/clip-a.mp4",
+                    "start": "0",
+                    "duration": "0.5",
+                    "marker": "Red Clip",
+                    "title": "Opening",
+                    "title_start": 0.05,
+                    "title_duration": 0.3,
+                    "title_style": "default",
+                },
+                {
+                    "path": "../media/clip-b.mp4",
+                    "start": "0.1",
+                    "duration": "0.4",
+                    "marker": "Yellow Clip",
+                    "audio_fade_out_seconds": 0.08,
+                },
+            ],
+            "output": {"path": "playlist-output.mp4"},
+        },
+    )
+
+    service = VideoEditingService()
+    output_path = generated_media_workspace.root / "playlist-output.mp4"
+
+    rendered_path = service.render_playlist(manifest_path, output_path=output_path)
+
+    assert rendered_path == output_path.resolve()
+    assert rendered_path.exists()
+    assert rendered_path.stat().st_size > 0
+
+    probe_result = service.probe_media(rendered_path)
+    stream = _video_stream(probe_result)
+
+    assert (int(stream["width"]), int(stream["height"])) == (160, 90)
+    assert float(probe_result["format"]["duration"]) >= 1.0
+
+
 def test_render_canvas_renders_real_output_from_generated_media(
     generated_media_workspace,
 ) -> None:

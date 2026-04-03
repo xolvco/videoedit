@@ -25,6 +25,7 @@ flowchart TD
 ```
 
 `videoedit` is now the canonical implementation layer. The legacy repos are compatibility wrappers that forward to it.
+They should be treated as deprecated migration shims rather than peer products.
 
 ## Current Feature Ownership
 
@@ -53,6 +54,12 @@ Compatibility layers:
 - `media-tools` re-exports low-level helpers from `videoedit` and should now be treated as deprecated
 - `video_editing_cli` re-exports the old service and CLI surface from `videoedit` and should now be treated as deprecated
 - `videoflow` re-exports reel/canvas/audio-mix classes from `videoedit`, while still owning analysis/generation modules
+
+Implication for maintenance:
+
+- new editing behavior should land only in `videoedit`
+- wrapper-repo docs should stay short and migration-focused
+- leftover wrapper-repo feature work should not automatically be treated as refactor debt if the canonical behavior already exists in `videoedit`
 
 ## Testing model
 

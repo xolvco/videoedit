@@ -240,7 +240,6 @@ For render-affecting changes, we should also have:
 
 Right now the project is still missing:
 
-- broader playlist integration tests using real FFmpeg renders
 - normalization and mixed-format integration coverage
 - deeper canvas scenarios with audio mixing, more panel counts, and mixed resolutions
 - workflow/golden tests for more than the first canonical render paths
@@ -260,7 +259,7 @@ Today `videoedit` also has:
 - fixture-backed manifest files under `tests/fixtures/manifests/`
 - reusable generated-media helpers under `tests/conftest.py`
 - direct render-path tests for `render_timeline`, `render_playlist`, `render_canvas`, and `plan_render`
-- FFmpeg-backed integration tests for timeline and canvas rendering using tiny generated media
+- FFmpeg-backed integration tests for timeline, playlist, and canvas rendering using tiny generated media
 - golden workflow tests for timeline and playlist summary behavior
 
 So the current suite is now beyond a basic migration checkpoint, but it is not yet the full end-state test architecture described above. The main thing still missing is deeper FFmpeg-backed integration coverage in `videoedit`, not more full legacy-suite duplication in the wrapper repos.
@@ -268,8 +267,8 @@ So the current suite is now beyond a basic migration checkpoint, but it is not y
 ## Recommended next testing milestone
 
 1. Expand the existing generated-media helpers for mixed-size and mixed-audio scenarios.
-2. Add a real FFmpeg-backed playlist render integration test.
-3. Add canvas integration coverage for audio mix and multi-panel layouts beyond the first two-panel path.
-4. Add normalization coverage with mismatched inputs.
-5. Add another golden workflow test for a miniature end-to-end edit pipeline.
+2. Add canvas integration coverage for audio mix and multi-panel layouts beyond the first two-panel path.
+3. Add normalization coverage with mismatched inputs.
+4. Add another golden workflow test for a miniature end-to-end edit pipeline.
+5. Decide whether any FFmpeg-heavy integration tests should be grouped under an explicit slow marker later.
 

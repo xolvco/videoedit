@@ -156,6 +156,16 @@ For manifest formats, see `docs/MANIFESTS.md`.
 For the current design direction, see `docs/ARCHITECTURE_SESSION.md` and `BACKLOG.md`.
 For the testing strategy, see `docs/TEST_PLAN.md`.
 
+## Compatibility wrappers
+
+`videoedit` is the canonical repo now.
+
+- `media-tools` is deprecated and kept only as a low-level compatibility wrapper
+- `video_editing_cli` is deprecated and kept only as a service and CLI compatibility wrapper
+- `videoflow` still owns some not-yet-migrated analysis and generation features, but `videoedit` does not depend on it
+
+New code should target `videoedit` directly.
+
 ## Library usage
 
 ```python
@@ -202,7 +212,7 @@ Each registered command is also checked for matching docs and tests, so missing 
 - `media-tools` and `video_editing_cli` should now be treated as deprecated compatibility layers
 - `videoflow` compatibility coverage is still partial because analysis/generation features have not fully moved into `videoedit`
 
-This means the current test posture is stronger for the migrated core than it was during the wrapper migration. `videoedit` now includes fixture-backed manifest tests, direct render-path coverage for timeline/playlist/canvas entrypoints, generated-media FFmpeg integration tests for timeline and canvas rendering, and golden workflow tests for timeline and playlist planning. It is still not the fully built-out-from-scratch target described in `docs/TEST_PLAN.md`; the next major gap is expanding those real-media integration scenarios across more playlist, normalization, and mixed-format workflows.
+This means the current test posture is stronger for the migrated core than it was during the wrapper migration. `videoedit` now includes fixture-backed manifest tests, direct render-path coverage for timeline/playlist/canvas entrypoints, generated-media FFmpeg integration tests for timeline, playlist, and canvas rendering, and golden workflow tests for timeline and playlist planning. It is still not the fully built-out-from-scratch target described in `docs/TEST_PLAN.md`; the next major gap is expanding those real-media integration scenarios across normalization, mixed-format inputs, and richer canvas audio cases.
 
 ## Notes
 
