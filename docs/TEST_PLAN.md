@@ -255,13 +255,20 @@ The refactor changed test ownership:
 - `video_editing_cli` runs smoke tests that verify command/docs coverage, manifest compatibility, and service import wiring
 - `videoflow` still needs a clearer long-term testing split because only part of its surface moved into `videoedit`
 
-So the current suite is good enough for a migration checkpoint, but it is not yet the full end-state test architecture described above. The main thing still missing is deeper integration coverage in `videoedit`, not more full legacy-suite duplication in the wrapper repos.
+Today `videoedit` also has:
+
+- fixture-backed manifest files under `tests/fixtures/manifests/`
+- placeholder media fixtures under `tests/fixtures/media/`
+- direct render-path tests for `render_timeline`, `render_playlist`, `render_canvas`, and `plan_render`
+- golden workflow tests for timeline and playlist summary behavior
+
+So the current suite is now beyond a basic migration checkpoint, but it is not yet the full end-state test architecture described above. The main thing still missing is deeper FFmpeg-backed integration coverage in `videoedit`, not more full legacy-suite duplication in the wrapper repos.
 
 ## Recommended next testing milestone
 
 1. Install and use `pytest` in the project environment.
-2. Add manifest fixture files under `tests/fixtures/manifests/`.
-3. Add a `plan` command and test its output.
-4. Add the first FFmpeg integration test using tiny generated media.
-5. Add one golden workflow test for a miniature music-video pipeline.
+2. Expand the existing manifest fixtures under `tests/fixtures/manifests/`.
+3. Add FFmpeg-backed integration tests using tiny generated media.
+4. Add richer canvas and playlist render integration coverage.
+5. Add another golden workflow test for a miniature end-to-end edit pipeline.
 

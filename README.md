@@ -199,9 +199,10 @@ Each registered command is also checked for matching docs and tests, so missing 
 
 - `videoedit` owns manifest, service, command, and workflow behavior tests
 - `media-tools` and `video_editing_cli` now run compatibility smoke tests rather than the old full suites
+- `media-tools` and `video_editing_cli` should now be treated as deprecated compatibility layers
 - `videoflow` compatibility coverage is still partial because analysis/generation features have not fully moved into `videoedit`
 
-This means the current test posture is strong for the migrated core, but it is not yet the fully built-out-from-scratch target described in `docs/TEST_PLAN.md`. The biggest remaining gaps are FFmpeg-backed integration fixtures, golden workflow coverage, and broader render-path tests for canvas and playlist rendering.
+This means the current test posture is stronger for the migrated core than it was during the wrapper migration. `videoedit` now includes fixture-backed manifest tests, direct render-path coverage for timeline/playlist/canvas entrypoints, and golden workflow tests for timeline and playlist planning. It is still not the fully built-out-from-scratch target described in `docs/TEST_PLAN.md`; the biggest remaining gaps are richer FFmpeg-backed media fixtures and broader end-to-end rendering integration.
 
 ## Notes
 

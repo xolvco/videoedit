@@ -1,0 +1,30 @@
+{
+  "kind": "canvas",
+  "version": 1,
+  "canvas_size": [
+    1920,
+    1080
+  ],
+  "panels": [
+    {
+      "input": "../media/clip-a.mp4",
+      "position": "outer_left",
+      "crop": "full",
+      "speed": 1.0
+    },
+    {
+      "input": "../media/clip-b.mp4",
+      "position": "inner_left",
+      "crop": "smart",
+      "speed": 1.25
+    }
+  ],
+  "finale": {
+    "input": "../media/finale.mp4",
+    "beats": 8,
+    "mode": "full_width"
+  },
+  "output": {
+    "path": "canvas-output.mp4"
+  }
+}

@@ -411,13 +411,16 @@ class VideoEditingService:
         gap_seconds: float | None = None,
         audio_fade_seconds: float | None = None,
     ) -> AssemblyManifest:
-        payload = load_json_document(manifest_path)
+        resolved_manifest_path = Path(manifest_path).expanduser().resolve()
+        payload = load_json_document(resolved_manifest_path)
         timeline_manifest = parse_timeline_manifest(payload)
+        base_dir = resolved_manifest_path.parent
         sections: list[TimelineSection] = []
         for item in timeline_manifest.sections:
             cut = timeline_manifest.cuts[item.cut]
             source_asset = timeline_manifest.sources[cut.source]
-            input_path = validate_existing_file(source_asset.path)
+            source_path = source_asset.path if source_asset.path.is_absolute() else base_dir / source_asset.path
+            input_path = validate_existing_file(source_path)
             title = normalize_title(item.title or cut.label, input_path)
             source_duration_seconds = parse_duration_from_probe(self.probe_media(input_path))
             duration_seconds = resolve_section_duration(

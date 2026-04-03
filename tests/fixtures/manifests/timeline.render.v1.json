@@ -1,0 +1,48 @@
+{
+  "kind": "timeline",
+  "version": 1,
+  "sources": [
+    {
+      "id": "clip_a",
+      "path": "../media/clip-a.mp4"
+    },
+    {
+      "id": "clip_b",
+      "path": "../media/clip-b.mp4"
+    }
+  ],
+  "cuts": [
+    {
+      "id": "intro",
+      "source": "clip_a",
+      "start": "00:00:01",
+      "duration": "2.5",
+      "label": "Intro"
+    },
+    {
+      "id": "middle",
+      "source": "clip_b",
+      "start": "00:00:03",
+      "duration": "3.0",
+      "label": "Middle"
+    }
+  ],
+  "defaults": {
+    "gap_after_seconds": 1.0,
+    "audio_fade_in_seconds": 0.25,
+    "audio_fade_out_seconds": 0.25
+  },
+  "sections": [
+    {
+      "cut": "intro",
+      "title": "Opening"
+    },
+    {
+      "cut": "middle",
+      "title": "Middle"
+    }
+  ],
+  "output": {
+    "path": "timeline-output.mp4"
+  }
+}

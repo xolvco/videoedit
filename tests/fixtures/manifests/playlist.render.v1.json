@@ -1,0 +1,39 @@
+{
+  "kind": "playlist",
+  "version": 1,
+  "defaults": {
+    "spacer_seconds": 1.5,
+    "audio_fade_in_seconds": 0.25,
+    "audio_fade_out_seconds": 0.5
+  },
+  "items": [
+    {
+      "path": "../media/clip-a.mp4",
+      "start": "00:00:01",
+      "duration": "2.5",
+      "marker": "Clip A",
+      "title": "Intro Card",
+      "title_style": "default"
+    },
+    {
+      "path": "../media/clip-b.mp4",
+      "start": "00:00:02",
+      "duration": "3.0",
+      "marker": "Clip B",
+      "audio_fade_out_seconds": 0.75
+    }
+  ],
+  "title_styles": {
+    "default": {
+      "anchor": "bottom-left",
+      "offset_x": 40,
+      "offset_y": 40,
+      "font_size": 28,
+      "font_color": "#FFFFFF",
+      "opacity": 0.9
+    }
+  },
+  "output": {
+    "path": "playlist-output.mp4"
+  }
+}

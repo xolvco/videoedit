@@ -50,8 +50,8 @@ Use `videoflow` only for the features that have not been fully absorbed into `vi
 
 Compatibility layers:
 
-- `media-tools` re-exports low-level helpers from `videoedit`
-- `video_editing_cli` re-exports the old service and CLI surface from `videoedit`
+- `media-tools` re-exports low-level helpers from `videoedit` and should now be treated as deprecated
+- `video_editing_cli` re-exports the old service and CLI surface from `videoedit` and should now be treated as deprecated
 - `videoflow` re-exports reel/canvas/audio-mix classes from `videoedit`, while still owning analysis/generation modules
 
 ## Testing model
