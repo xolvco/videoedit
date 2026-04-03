@@ -56,7 +56,7 @@ def test_concat_workflow_preview_to_playlist_render(tmp_path: Path, monkeypatch,
 
     assert validate_exit == 0
     assert concat_exit == 0
-    assert "Valid concat-playlist manifest" in captured_output.out
+    assert "Valid playlist manifest" in captured_output.out
     assert "trim=start=1.000:duration=11.000" in command_text
     assert "trim=start=1.000:duration=3.000" in command_text
     assert "title=Opening" in metadata_text["value"]

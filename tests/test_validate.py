@@ -85,7 +85,7 @@ def test_validate_manifest_accepts_concat_playlist_manifest(tmp_path: Path) -> N
 
     result = VideoEditingService().validate_manifest(manifest_path)
 
-    assert result.manifest_type == "concat-playlist"
+    assert result.manifest_type == "playlist"
     assert result.source_count == 2
     assert result.cut_count == 2
     assert result.section_count == 2

@@ -122,7 +122,7 @@ def test_concat_json_preview_builds_manifest_style_payload() -> None:
     assert "defaults" not in payload
     assert payload["items"][0]["start"] == "00:00:03"
     assert payload["items"][0]["end"] == "00:00:10"
-    assert payload["items"][0]["marker"] == "b clip"
+    assert payload["items"][0]["marker"] == "clips\\b clip"
     assert payload["output"]["path"] == "joined.mp4"
 
 
