@@ -202,7 +202,7 @@ Each registered command is also checked for matching docs and tests, so missing 
 - `media-tools` and `video_editing_cli` should now be treated as deprecated compatibility layers
 - `videoflow` compatibility coverage is still partial because analysis/generation features have not fully moved into `videoedit`
 
-This means the current test posture is stronger for the migrated core than it was during the wrapper migration. `videoedit` now includes fixture-backed manifest tests, direct render-path coverage for timeline/playlist/canvas entrypoints, and golden workflow tests for timeline and playlist planning. It is still not the fully built-out-from-scratch target described in `docs/TEST_PLAN.md`; the biggest remaining gaps are richer FFmpeg-backed media fixtures and broader end-to-end rendering integration.
+This means the current test posture is stronger for the migrated core than it was during the wrapper migration. `videoedit` now includes fixture-backed manifest tests, direct render-path coverage for timeline/playlist/canvas entrypoints, generated-media FFmpeg integration tests for timeline and canvas rendering, and golden workflow tests for timeline and playlist planning. It is still not the fully built-out-from-scratch target described in `docs/TEST_PLAN.md`; the next major gap is expanding those real-media integration scenarios across more playlist, normalization, and mixed-format workflows.
 
 ## Notes
 

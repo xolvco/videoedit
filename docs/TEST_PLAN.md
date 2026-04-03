@@ -72,7 +72,7 @@ Focus:
 - gap and fade behavior
 - normalization behavior once added
 
-These should use very small fixture media and run less often than unit tests.
+These should use very small generated or checked-in fixture media and run less often than unit tests.
 
 ### Layer 5: Golden workflow tests
 
@@ -240,11 +240,11 @@ For render-affecting changes, we should also have:
 
 Right now the project is still missing:
 
-- a dedicated fixture strategy for media files
-- FFmpeg-backed integration tests
-- broader playlist and canvas render-path tests
-- workflow/golden tests for the unified library-first backend
-- a clear split between canonical `videoedit` tests and compatibility-wrapper smoke tests in the written plan
+- broader playlist integration tests using real FFmpeg renders
+- normalization and mixed-format integration coverage
+- deeper canvas scenarios with audio mixing, more panel counts, and mixed resolutions
+- workflow/golden tests for more than the first canonical render paths
+- a clearer long-term split for the parts of `videoflow` that still live outside `videoedit`
 
 ## Current reality after the refactor
 
@@ -258,17 +258,18 @@ The refactor changed test ownership:
 Today `videoedit` also has:
 
 - fixture-backed manifest files under `tests/fixtures/manifests/`
-- placeholder media fixtures under `tests/fixtures/media/`
+- reusable generated-media helpers under `tests/conftest.py`
 - direct render-path tests for `render_timeline`, `render_playlist`, `render_canvas`, and `plan_render`
+- FFmpeg-backed integration tests for timeline and canvas rendering using tiny generated media
 - golden workflow tests for timeline and playlist summary behavior
 
 So the current suite is now beyond a basic migration checkpoint, but it is not yet the full end-state test architecture described above. The main thing still missing is deeper FFmpeg-backed integration coverage in `videoedit`, not more full legacy-suite duplication in the wrapper repos.
 
 ## Recommended next testing milestone
 
-1. Install and use `pytest` in the project environment.
-2. Expand the existing manifest fixtures under `tests/fixtures/manifests/`.
-3. Add FFmpeg-backed integration tests using tiny generated media.
-4. Add richer canvas and playlist render integration coverage.
+1. Expand the existing generated-media helpers for mixed-size and mixed-audio scenarios.
+2. Add a real FFmpeg-backed playlist render integration test.
+3. Add canvas integration coverage for audio mix and multi-panel layouts beyond the first two-panel path.
+4. Add normalization coverage with mismatched inputs.
 5. Add another golden workflow test for a miniature end-to-end edit pipeline.
 

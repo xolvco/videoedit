@@ -705,6 +705,10 @@ class VideoEditingService:
             normalized_payload["type"] = "canvas_edit"
         if "version" not in normalized_payload:
             normalized_payload["version"] = "1.0"
+        normalized_payload = _resolve_canvas_payload_paths(
+            normalized_payload,
+            resolved_manifest_path.parent,
+        )
         canvas = MultiPanelCanvas.from_dict(normalized_payload)
         target_output = output_path or manifest.output.path
         if target_output is None:
@@ -762,3 +766,57 @@ def _normalize_marker_text(raw_text: str) -> str:
     collapsed = re.sub(r"[_-]+", " ", raw_text)
     collapsed = re.sub(r"\s+", " ", collapsed)
     return collapsed.strip()
+
+
+def _resolve_canvas_payload_paths(
+    payload: dict[str, object],
+    base_dir: Path,
+) -> dict[str, object]:
+    resolved_payload = dict(payload)
+
+    resolved_panels: list[dict[str, object]] = []
+    for raw_panel in resolved_payload.get("panels", []):
+        if not isinstance(raw_panel, dict):
+            resolved_panels.append(raw_panel)
+            continue
+        panel = dict(raw_panel)
+        input_value = panel.get("input")
+        if isinstance(input_value, str):
+            panel["input"] = str(_resolve_manifest_path_value(input_value, base_dir))
+        resolved_panels.append(panel)
+    if resolved_panels:
+        resolved_payload["panels"] = resolved_panels
+
+    raw_finale = resolved_payload.get("finale")
+    if isinstance(raw_finale, dict):
+        finale = dict(raw_finale)
+        input_value = finale.get("input")
+        if isinstance(input_value, str):
+            finale["input"] = str(_resolve_manifest_path_value(input_value, base_dir))
+        resolved_payload["finale"] = finale
+
+    raw_audio = resolved_payload.get("audio")
+    if isinstance(raw_audio, dict):
+        audio = dict(raw_audio)
+        resolved_tracks: list[dict[str, object]] = []
+        for raw_track in audio.get("tracks", []):
+            if not isinstance(raw_track, dict):
+                resolved_tracks.append(raw_track)
+                continue
+            track = dict(raw_track)
+            input_value = track.get("input")
+            if isinstance(input_value, str):
+                track["input"] = str(_resolve_manifest_path_value(input_value, base_dir))
+            resolved_tracks.append(track)
+        if resolved_tracks:
+            audio["tracks"] = resolved_tracks
+        resolved_payload["audio"] = audio
+
+    return resolved_payload
+
+
+def _resolve_manifest_path_value(raw_path: str, base_dir: Path) -> Path:
+    path = Path(raw_path)
+    if path.is_absolute():
+        return path
+    return (base_dir / path).resolve()
