@@ -173,17 +173,33 @@ class VideoEditingService:
         width: int | None = None,
         height: int | None = None,
         fps: float | None = None,
+        fit: str = "letterbox",
+        pixel_fmt: str = "yuv420p",
+        audio_sample_rate: int = 44100,
+        audio_channels: int = 2,
+        crf: int = 18,
+        preset: str = "fast",
+        timeout: float = 600.0,
         video_codec: str = "libx264",
         audio_codec: str = "aac",
     ) -> Path:
+        if video_codec != "libx264":
+            raise ValueError("normalize_video currently supports only video_codec='libx264'")
+        if audio_codec != "aac":
+            raise ValueError("normalize_video currently supports only audio_codec='aac'")
         return legacy_normalize_video(
             input=input_path,
             output=output_path,
             width=width,
             height=height,
             fps=fps,
-            video_codec=video_codec,
-            audio_codec=audio_codec,
+            fit=fit,
+            pixel_fmt=pixel_fmt,
+            audio_sample_rate=audio_sample_rate,
+            audio_channels=audio_channels,
+            crf=crf,
+            preset=preset,
+            timeout=timeout,
         )
 
     def concat_videos(

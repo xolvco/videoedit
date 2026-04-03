@@ -337,7 +337,7 @@ class MultiPanelCanvas:
             crop = ""
 
         label = f"p{stream_idx}"
-        chain = f"[{stream_idx}:v]{pts},{crop}scale={w}:{h}[{label}]"
+        chain = f"[{stream_idx}:v]{pts},{crop}scale={w}:{h},setsar=1[{label}]"
         return chain, label
 
     def _build_filter_complex(self) -> str:
@@ -361,9 +361,8 @@ class MultiPanelCanvas:
         if self._finale is not None:
             w, h = self.canvas_size
             parts.append(f"{hstack_inputs}hstack=inputs={n}[panels]")
-            parts.append(f"[{finale_idx}:v]scale={w}:{h}[fin]")
-            concat_av = "1:a=1" if self.audio_mix else "1:a=0"
-            parts.append(f"[panels][fin]concat=n=2:v={concat_av}[vout]")
+            parts.append(f"[{finale_idx}:v]scale={w}:{h},setsar=1[fin]")
+            parts.append("[panels][fin]concat=n=2:v=1:a=0[vout]")
             video_out = "[vout]"
         else:
             parts.append(f"{hstack_inputs}hstack=inputs={n}[vout]")

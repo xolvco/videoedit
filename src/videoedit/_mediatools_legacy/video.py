@@ -579,7 +579,7 @@ def normalize_video(
     else:  # stretch
         scale_filters = f"scale={width}:{height}"
 
-    vf = f"{scale_filters},fps={fps},format={pixel_fmt}"
+    vf = f"{scale_filters},setsar=1,fps={fps},format={pixel_fmt}"
 
     cmd = [
         "ffmpeg", "-y",

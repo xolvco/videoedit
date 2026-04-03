@@ -240,9 +240,9 @@ For render-affecting changes, we should also have:
 
 Right now the project is still missing:
 
-- normalization and mixed-format integration coverage
-- deeper canvas scenarios with audio mixing, more panel counts, and mixed resolutions
-- workflow/golden tests for more than the first canonical render paths
+- broader mixed-format normalization coverage across even more than the current batch profiles
+- deeper canvas scenarios with more mixed resolutions and more timing combinations than the current finale/audio cases
+- workflow/golden tests beyond the first normalization-to-render timeline and playlist scenarios
 - a clearer long-term split for the parts of `videoflow` that still live outside `videoedit`
 
 ## Current reality after the refactor
@@ -259,16 +259,16 @@ Today `videoedit` also has:
 - fixture-backed manifest files under `tests/fixtures/manifests/`
 - reusable generated-media helpers under `tests/conftest.py`
 - direct render-path tests for `render_timeline`, `render_playlist`, `render_canvas`, and `plan_render`
-- FFmpeg-backed integration tests for timeline, playlist, and canvas rendering using tiny generated media
-- golden workflow tests for timeline and playlist summary behavior
+- FFmpeg-backed integration tests for timeline, playlist, normalization, and deeper canvas rendering using tiny generated media
+- golden workflow tests for timeline and playlist summary behavior plus normalize-then-render timeline and playlist workflows
 
 So the current suite is now beyond a basic migration checkpoint, but it is not yet the full end-state test architecture described above. The main thing still missing is deeper FFmpeg-backed integration coverage in `videoedit`, not more full legacy-suite duplication in the wrapper repos.
 
 ## Recommended next testing milestone
 
-1. Expand the existing generated-media helpers for mixed-size and mixed-audio scenarios.
-2. Add canvas integration coverage for audio mix and multi-panel layouts beyond the first two-panel path.
-3. Add normalization coverage with mismatched inputs.
-4. Add another golden workflow test for a miniature end-to-end edit pipeline.
+1. Expand the existing generated-media helpers for more mixed-size, mixed-fps, and mixed-audio scenarios.
+2. Add deeper canvas timing coverage with more speed combinations and finale/audio interactions.
+3. Add another golden workflow test for a more complex end-to-end edit pipeline.
+4. Decide whether normalization should also get manifest-driven or service-batch workflow coverage beyond the current service-batch scenario.
 5. Decide whether any FFmpeg-heavy integration tests should be grouped under an explicit slow marker later.
 
