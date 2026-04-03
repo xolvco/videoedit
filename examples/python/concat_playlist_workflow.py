@@ -17,12 +17,26 @@ def main() -> None:
             "audio_fade_in_seconds": 0.5,
             "audio_fade_out_seconds": 0.5,
         },
+        "title_styles": {
+            "default": {
+                "anchor": "bottom-left",
+                "offset_x": 80,
+                "offset_y": 80,
+                "font_size": 42,
+                "font_color": "#FFFFFF",
+                "opacity": 0.92,
+            }
+        },
         "items": [
             {
                 "path": str(clips[0]),
                 "start": "00:00:03.000",
                 "end": "00:00:12.000",
                 "marker": "Intro",
+                "title": "Opening",
+                "title_start": 0.25,
+                "title_duration": 2.5,
+                "title_style": "default",
             },
             {
                 "path": str(clips[1]),

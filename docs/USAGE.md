@@ -42,6 +42,16 @@ python -m videoedit <command> [arguments] [options]
 - `extract-audio`: write an audio-only output from a media file
 - `assemble`: render a manifest-driven timeline with gaps, fades, and chapter markers
 
+## Core library workflows
+
+The CLI covers the current command surface, but the broader editing backend now also exposes a few important library-first workflows:
+
+- normalize mismatched source clips before assembly with `VideoEditingService.normalize_video(...)`
+- render playlist manifests directly with `render_playlist(...)`
+- render timeline manifests directly with `render_timeline(...)`
+- render canvas manifests directly with `render_canvas(...)`
+- inspect manifest-driven work without rendering via `plan_render(...)` and `summarize_plan(...)`
+
 ## Examples
 
 ### Inspect a file
@@ -110,6 +120,35 @@ video-edit extract-audio input.mp4 audio.wav
 video-edit assemble examples/manifests/timeline.v1.json output.mp4
 ```
 
+### Normalize a source clip before assembly
+
+Use the Python API when you want to standardize resolution, frame rate, and audio shape before later rendering:
+
+```python
+from pathlib import Path
+
+from videoedit import VideoEditingService
+
+service = VideoEditingService()
+service.normalize_video(
+    input_path=Path("portrait-source.mp4"),
+    output_path=Path("portrait-source.norm.mp4"),
+    width=160,
+    height=90,
+    fps=24,
+)
+```
+
+### Render a canvas manifest
+
+```python
+from pathlib import Path
+
+from videoedit import render_canvas
+
+render_canvas(Path("canvas.json"))
+```
+
 The manifest can describe cuts from longer source files with versioned `sources`, `cuts`, and `sections`.
 For the versioned manifest schema, see [Manifest Formats](MANIFESTS.md).
 
@@ -121,12 +160,20 @@ For manifest-driven editing, the typical sequence is:
 2. `plan` the assembly or preview scaffold
 3. `assemble` or `concat` the final output
 
+For mixed-source workflows, a practical sequence is often:
+
+1. normalize source clips to a shared size and frame rate
+2. validate the playlist, timeline, or canvas manifest
+3. summarize or plan the render
+4. render the final output
+
 For quick concat work, start with direct files or `--input-dir`, then use `--json-preview` when you want an editable playlist scaffold.
 
 ## Guided walkthroughs
 
 - [Quickstart](QUICKSTART.md): novice-first PowerShell walkthrough
 - [Concat Playlist Guide](CONCAT_PLAYLIST_GUIDE.md): manifest-focused concat guide
+- `README.md`: higher-level Python API examples for normalize, playlist, timeline, and canvas flows
 
 ## Command reference
 

@@ -128,6 +128,36 @@ render_timeline(Path("timeline.json"))
 render_canvas(Path("canvas.json"))
 ```
 
+## 9. Normalize mismatched clips before a render
+
+If your source clips do not share the same shape or frame rate, normalize them first and render from the normalized outputs later:
+
+```python
+from pathlib import Path
+
+from videoedit import VideoEditingService
+
+service = VideoEditingService()
+service.normalize_video(
+    input_path=Path("portrait-source.mp4"),
+    output_path=Path("portrait-source.norm.mp4"),
+    width=160,
+    height=90,
+    fps=24,
+)
+```
+
+That workflow is especially useful before timeline or playlist rendering when the original material comes from mixed devices or exports.
+
+## 10. Know what the backend can do today
+
+The current backend is now broader than the first concat-only walkthrough:
+
+- concat playlist rendering with titles, markers, fades, and spacers
+- timeline rendering from cut-list style manifests
+- canvas rendering, including multi-panel layouts, finales, and audio mixes
+- normalization before rendering when source footage is mismatched
+
 ## Common questions
 
 ### How do I set the gap between videos to `0`?
@@ -179,4 +209,5 @@ Today the supported spacer behavior is black spacing controlled by `spacer_secon
 ## Next step
 
 Once you are comfortable with the quickstart flow, continue to [Concat Playlist Guide](CONCAT_PLAYLIST_GUIDE.md) for a manifest-focused guide that explains the current playlist format in more detail.
+For the broader backend surface, also review [CLI Usage](USAGE.md).
 

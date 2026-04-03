@@ -18,6 +18,7 @@ Use a manifest to control:
 - the order of clips
 - per-clip trim timing
 - markers
+- simple text titles
 - gap timing
 - audio fade timing
 - output path
@@ -39,12 +40,26 @@ examples/manifests/concat-playlist.v1.json
     "audio_fade_in_seconds": 0.5,
     "audio_fade_out_seconds": 0.5
   },
+  "title_styles": {
+    "default": {
+      "anchor": "bottom-left",
+      "offset_x": 80,
+      "offset_y": 80,
+      "font_size": 42,
+      "font_color": "#FFFFFF",
+      "opacity": 0.92
+    }
+  },
   "items": [
     {
       "path": "clips/intro.mp4",
       "start": "00:00:03.000",
       "end": "00:00:12.000",
-      "marker": "Intro"
+      "marker": "Intro",
+      "title": "Opening",
+      "title_start": 0.25,
+      "title_duration": 2.5,
+      "title_style": "default"
     },
     {
       "path": "clips/topic-a.mp4",
@@ -84,6 +99,19 @@ Current fields:
 - `audio_fade_in_seconds`
 - `audio_fade_out_seconds`
 
+### `title_styles`
+
+Reusable title styling for playlist item overlays.
+
+Current fields:
+
+- `anchor`
+- `offset_x`
+- `offset_y`
+- `font_size`
+- `font_color`
+- `opacity`
+
 ### `items`
 
 The ordered clips in the final output.
@@ -95,6 +123,10 @@ Each item can currently define:
 - `end`
 - `duration`
 - `marker`
+- `title`
+- `title_start`
+- `title_duration`
+- `title_style`
 - `audio_fade_in_seconds`
 - `audio_fade_out_seconds`
 - `spacer_seconds`
@@ -217,6 +249,35 @@ Add an explicit `marker` field:
 }
 ```
 
+### How do I show a simple title on one clip?
+
+Add `title` fields to the item and point at a manifest title style:
+
+```json
+{
+  "path": "clips/topic-a.mp4",
+  "title": "Opening",
+  "title_start": 0.25,
+  "title_duration": 2.5,
+  "title_style": "default"
+}
+```
+
+Define the reusable style once:
+
+```json
+"title_styles": {
+  "default": {
+    "anchor": "bottom-left",
+    "offset_x": 80,
+    "offset_y": 80,
+    "font_size": 42,
+    "font_color": "#FFFFFF",
+    "opacity": 0.92
+  }
+}
+```
+
 ### How do I use an image between videos?
 
 That is planned but not implemented yet.
@@ -229,10 +290,15 @@ The current concat playlist is already useful, but it does not yet implement:
 
 - image interstitials
 - sampled-frame interstitials
-- title overlays
 - branding bugs
 - intro cards
 - credits
+
+The current playlist flow does already support:
+
+- text title overlays
+- reusable manifest-level title styles
+- per-item title timing
 
 Those are planned in the architecture and can be layered onto this manifest approach later.
 

@@ -1,0 +1,53 @@
+architecture decision:
+- should scene selection and splitting be a separate library fro videoedit
+    - the idea is 
+        - step 1 is split 
+        - step 2 is reassemble and render (Videoedit library)
+    - is this a refactor?
+    - add optional thumbnails and an output directory for the thumbnails to scene selection
+    - scene split selection should have two modes (or two separate commands perhaps)
+        - scene split on each cut (or fade)
+        - split scene on genuinely new act (different background, different scene)
+    - create audio beat mp3 beat track so you can hear the beats instead of, or in addition to, the regular soundtrack
+- decide whether beat analysis and scene detection stay in `videoflow` long-term or move into separate packages later
+- select a portion of the video, initially by desination of a proportion (for exmple 9:16) and where that x-axis begins? with a follow up feature to follow action
+
+
+progress:
+- [X] keep `videoedit` as the canonical repo and treat `media-tools` and `video_editing_cli` as deprecated compatibility layers
+- [X] no further migration is needed from the current uncommitted `video_editing_cli` docs/tests/example changes; the useful concat title-style docs and tests are already present in `videoedit`
+- [0] `videoflow/src/videoflow/audio.py` is still phase-two scope, not a blocker for the current core refactor; it belongs to the still-unmigrated beat-analysis feature set
+- [0] if we want the architecture fully simplified, the next wrapper step is to replace `media-tools` and `video_editing_cli` with minimal deprecation shims or archive them after a migration window
+
+refactor completion checklist:
+- keep `videoedit` as the canonical repo and treat `media-tools` and `video_editing_cli` as deprecated compatibility layers
+- no further migration is needed from the current uncommitted `video_editing_cli` docs/tests/example changes; the useful concat title-style docs and tests are already present in `videoedit`
+- `videoflow/src/videoflow/audio.py` is still phase-two scope, not a blocker for the current core refactor; it belongs to the still-unmigrated beat-analysis feature set
+- if we want the architecture fully simplified, the next wrapper step is to replace `media-tools` and `video_editing_cli` with minimal deprecation shims or archive them after a migration window
+
+current highest-value core follow-ups:
+- [X] add a real FFmpeg-backed playlist render integration test
+- [X] add normalization integration coverage with mixed-size or mixed-format generated inputs
+- [X] expand canvas integration coverage for audio mixing and more panel layouts
+- [X] add batch normalization coverage
+- [X] add a richer four-panel canvas workflow
+- [X] add golden workflows that normalize mismatched inputs and then render from manifest-driven playlist and timeline paths
+- [0] materialize docs publishing on GitHub Pages
+- [0] add deeper manifest- or service-level normalization workflows beyond the current service-batch scenario
+- [0] add deeper canvas timing combinations beyond the current finale plus audio-mix scenarios
+
+feature updates:
+- [0] add metadata to rendered video file, especially title, author, artist, thumbnail
+- [0] user customizable titles (main title, at new sections). transparent png, or multi-line text, stylized using some method like css or other easier to use one
+- [0] add a more complex end-to-end golden workflow that crosses normalization, playlist/timeline planning, and final render
+- [0] combine beat, audio, and/or music in rendering. Mixing by scenes/cuts?
+
+user guides document:
+- [0] material mkdocs deployment to pages
+- [X] document batch normalization
+- [X] document one richer four-panel canvas workflow
+- [X] document a golden workflow that normalizes mismatched inputs and then renders from a manifest built off those normalized files
+
+product shipping:
+- [0] document how companies ship FFmpeg in their products
+- [0] cleanup: GitHub Actions still shows the Node 20 deprecation warning for actions/checkout@v4 and actions/setup-python@v5
